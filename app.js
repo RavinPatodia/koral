@@ -239,11 +239,13 @@ app.locals = {
 app.engine('html', hbs.engine);
 app.engine('hbs', hbs.engine);
 app.set('views', path.join(__dirname, 'views'));
+/** 
 app.use(function(req, res, next) {
     let err = new Error('页面不存在');
     err.status = 404;
     next(err);
 });
+*/
 
 core.walk(appPath + '/models', null, function(path) {
     require(path);
