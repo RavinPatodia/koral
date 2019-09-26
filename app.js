@@ -9,16 +9,6 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let app = express();
 
-app.locals = {
-    title: config.title || 'koral',
-    keywords:'node.js,koral',
-    description:'koral web service system',
-    core: core,
-    config: config,
-    adminDir: config.admin.dir ? ('/' + config.admin.dir) : '',
-    env: config.env
-};
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodb.uri, {
     useMongoClient: true
@@ -236,7 +226,15 @@ var hbs = handlebars.create({
 
     }
 })
-
+app.locals = {
+    title: config.title || 'koral',
+    keywords:'node.js,koral',
+    description:'koral web service system',
+    core: core,
+    config: config,
+    adminDir: config.admin.dir ? ('/' + config.admin.dir) : '',
+    env: config.env
+};
 app.engine('html', hbs.engine);
 app.engine('hbs', hbs.engine);
 app.set('views', path.join(__dirname, 'views'));
