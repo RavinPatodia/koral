@@ -9,16 +9,6 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let app = express();
 
-app.locals = {
-    title: config.title || 'koral',
-    keywords:'node.js,koral',
-    description:'koral web service system',
-    core: core,
-    config: config,
-    adminDir: config.admin.dir ? ('/' + config.admin.dir) : '',
-    env: config.env
-};
-
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodb.uri, {
     useMongoClient: true
@@ -28,7 +18,14 @@ mongoose.connect(config.mongodb.uri, {
 }, function(err) {
     console.log('mongodb connection fail', err)
 });
-
+app.locals = {
+    title: config.title || 'koral',
+    keywords:'node.js,koral',
+    description:'koral web service system',
+    core: core,
+    adminDir: config.admin.dir ? ('/' + config.admin.dir) : '',
+    env: config.env
+};
 /**
  * hbs
  */
