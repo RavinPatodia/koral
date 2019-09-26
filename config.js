@@ -27,5 +27,5 @@ let config = {
             admin: 'admin',
             user: 'user'
         }
-    },
+    }
 }
