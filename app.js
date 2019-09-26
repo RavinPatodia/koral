@@ -2,6 +2,7 @@
 
 let express =require('express');
 let appPath = process.cwd();
+let path = require('path');
 let config = require('./config');
 let core = require('./libs/core');
 let mongoose = require('mongoose');
@@ -246,9 +247,6 @@ app.use(function(req, res, next) {
 
 core.walk(appPath + '/models', null, function(path) {
     require(path);
-});
-core.walk(appPath + '/routes/app', 'middlewares', function(path) {
-    require(path)(app);
 });
 core.walk(appPath + '/routes/server', 'middlewares', function(path) {
     require(path)(app);

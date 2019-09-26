@@ -12,9 +12,9 @@ router.use(function(req, res, next) {
 });
 router.route('/').get(demo.list);
 router.route('/add').all(demo.add);
-router.route('/:id').get(tag.one);
-router.route('/:id/edit').all(tag.edit);
-router.route('/:id/del').all(tag.del);
+router.route('/:id').get(demo.one);
+router.route('/:id/edit').all(demo.edit);
+router.route('/:id/del').all(demo.del);
 
 module.exports = function(app) {
     let path = core.translateAdminDir('/demo');
