@@ -9,9 +9,6 @@ let backPath = 'demo'
 
 exports.list = async function(req, res) {
     let condition = {};
-    if(req.Roles && req.Roles.indexOf('admin') < 0) {
-        condition.author = req.session.user._id;
-    }
     try {
         let total = await demoService.count(condition);
         let pageInfo = core.createPage(req.query.page, total);
@@ -58,9 +55,6 @@ exports.add = async function(req, res) {
     } else if (req.method === 'POST') {
 
         let obj = _.pick(req.body, 'name', 'description');
-        if (req.session.user) {
-            obj.author = req.session.user._id;
-        }
         console.log("ss")
         console.log(req.body)
         console.log(obj)

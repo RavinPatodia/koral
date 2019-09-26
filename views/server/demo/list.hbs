@@ -16,7 +16,6 @@
             {{#each demos}}
             <tr>
                 <td><a href="{{../adminDir}}/demo/{{id}}">{{name}}</a></td>
-                <td>{{#if author}}{{author.name}}{{else}}无{{/if}}
                 </td>
                 <td>{{dateFormat created 'yyyy-MM-dd hh:mm:ss'}}</td>
                 <td><a href="{{../adminDir}}/demo/{{id}}/edit" class="btn btn-default btn-xs">编辑</a>&nbsp;
