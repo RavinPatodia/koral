@@ -20,5 +20,12 @@ let config = {
         accessTokenApi:'https://api.weixin.qq.com/cgi-bin/token?',
         createMenuApi:'https://api.weixin.qq.com/cgi-bin/menu/create?access_token='
     },
-    title:''
+    title:'',
+    admin: {
+        dir: 'admin',
+        role: {
+            admin: 'admin',
+            user: 'user'
+        }
+    },
 }
