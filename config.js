@@ -28,4 +28,5 @@ let config = {
             user: 'user'
         }
     }
-}
+};
+module.exports = config;
