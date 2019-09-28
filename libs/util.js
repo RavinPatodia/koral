@@ -56,3 +56,9 @@ exports.hashPassword = function(password, secret) {
         return '';
     }
 };
+
+exports.checkValidate= function(token){
+    let now = new Date();
+    let time = token.expires_in;
+    return time.getTime() - now.getTime() > 20;
+};
