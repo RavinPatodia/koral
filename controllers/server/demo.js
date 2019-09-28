@@ -8,7 +8,6 @@ let demoService = require('../../services/demo')
 let backPath = 'demo'
 
 exports.list = async function(req, res) {
-    console.log(req.body);
     let condition = {};
     try {
         let total = await demoService.count(condition);
@@ -20,6 +19,7 @@ exports.list = async function(req, res) {
                 created: -1
             }
         });
+        
         res.render('server/demo/list.hbs', {
             title: 'demo',
             tags: results,
