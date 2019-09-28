@@ -2,10 +2,10 @@
 
 let appPath = process.cwd();
 let config = {
-    port: 8080,
+    port: 7000,
     env:process.env.NODE_ENV || 'development',
     mongodb: {
-        uri: 'mongodb://localhost:27017/blog',
+        uri: 'mongodb://localhost:27017/koral',
         options: {}
     },
     redis: {

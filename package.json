@@ -1,16 +1,12 @@
 {
-    "name": "koral",
-    "version": "1.0.0",
-    "description": "koral",
-    "main": "app.js",
-    "dependencies": {
-      "axios": "^0.16.0",
-    "body-parser": "~1.17.1",
+  "name": "koral",
+  "version": "1.0.0",
+  "description": "koral",
+  "main": "app.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "body-parser-xml": "^1.1.0",
-    "xml2js": "^0.4.17",
-    "request": "^2.72.0",
-    "mongodb": "^2.2.2",
-    "nunjucks": "^2.4.2",
     "compression": "^1.6.2",
     "connect-multiparty": "^1.0.5",
     "connect-redis": "^3.2.0",
@@ -18,42 +14,45 @@
     "cookie-parser": "~1.4.3",
     "csurf": "^1.8.3",
     "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "express": "^4.17.1",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.2.0",
     "gravatar": "^1.0.6",
     "jade": "~1.11.0",
     "jsonwebtoken": "^7.3.0",
     "lodash": "^4.17.4",
-    "marked": "^0.3.3",
+    "marked": "^0.8.2",
     "mkdirp": "^0.5.0",
     "moment": "^2.18.0",
+    "mongodb": "^2.2.2",
     "mongoose": "^4.9.2",
-    "morgan": "~1.8.1",
+    "morgan": "^1.10.0",
     "nodemailer": "^4.0.1",
+    "nunjucks": "^2.4.2",
     "qn": "^0.2.2",
     "qs": "^2.3.3",
+    "request": "^2.72.0",
     "sendmail": "^1.1.1",
     "serve-favicon": "^2.4.2",
     "strip": "0.0.7",
+    "xml2js": "^0.4.17",
     "xss": "^0.3.3"
-    },
-    "devDependencies": {
-      "cross-env": "^4.0.0",
-      "nodemon": "^1.11.0"
-    },
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-      "type": "git",
-      "url": "git+https://github.com/RavinPatodia/edu.git"
-    },
-    "author": "H-VK",
-    "license": "ISC",
-    "bugs": {
-      "url": "https://github.com/RavinPatodia/edu/issues"
-    },
-    "homepage": "https://github.com/RavinPatodia/edu#readme"
-  }
-  
+  },
+  "devDependencies": {
+    "cross-env": "^4.0.0",
+    "nodemon": "^1.11.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RavinPatodia/edu.git"
+  },
+  "author": "H-VK",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RavinPatodia/edu/issues"
+  },
+  "homepage": "https://github.com/RavinPatodia/edu#readme"
+}
