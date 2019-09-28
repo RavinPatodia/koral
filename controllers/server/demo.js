@@ -34,7 +34,7 @@ exports.list = async function(req, res) {
 exports.one = async function(req, res) {
     let id = req.params.id;
     try {
-        let result = await demoService.findById(id).exec();
+        let result = await demoService.findById(id);
         res.render('server/demo/item.hbs', {
             Menu:"demo",
             title: result.name,
@@ -76,7 +76,7 @@ exports.add = async function(req, res) {
 exports.edit = async function(req, res) {
     if(req.method === 'GET') {
         let id = req.params.id;
-        let result = await demoService.findById(id).exec();
+        let result = await demoService.findById(id);
         res.render('server/demo/edit.hbs', {
             Menu:'demo',
             demo: result
@@ -84,7 +84,7 @@ exports.edit = async function(req, res) {
     } else if(req.method === 'POST') {
         let id = req.params.id;
         let obj = _.pick(req.body, 'name', 'description');
-        let result = await demoService.findById(id).exec();
+        let result = await demoService.findById(id);
         _.assign(result, obj);
         result.save(function(err, demo) {
             if(!err) {
@@ -98,7 +98,7 @@ exports.edit = async function(req, res) {
 exports.del = async function(req, res) {
     let id = req.params.id;
     try{
-        let result = await demoService.findById(id).exec();
+        let result = await demoService.findById(id);
         result.remove(function(err) {
             if(err) {
                 return res.render('server/info.hbs', { layout:'layout-blank',
