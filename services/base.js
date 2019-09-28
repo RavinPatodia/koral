@@ -79,7 +79,15 @@ let services = function(Model) {
             })
         },
         findOneAndUpdate: function(condition = {}, doc = {}, options = {}) {
-    
+            return new Promise(function(resolve, reject) {
+                Model.findOneAndUpdate(condition, doc, options, function(err, result) {
+                    if (err) {
+                        reject(err)
+                    } else {
+                        resolve(result);
+                    }
+                })
+            })
         },
         findByIdAndUpdate: function(id, obj, options) {
             return new Promise(function(resolve, reject) {
