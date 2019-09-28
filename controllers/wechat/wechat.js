@@ -32,16 +32,17 @@ let client_token = async function(){
     let condition={};
     condition.grant_type='client_credential';
     try {
-      let token = await tokenService.findOne(condition); 
+      /*let token = await tokenService.findOne(condition); 
        if(util.checkValidate(token)){
          return token.access_token;
-       }else{
+       }else{} */
          let result = await tokenService.requestToken();
          console.log(result);
          let expires_in = new Date();
          expires_in.setSeconds(now.getSeconds() + result.expires_in);
          let obj ={};
          obj.access_token=result.access_token;
+         obj.type='client_credential';
          obj.expires_in=expires_in;
          /**
           let tokenDoc = await tokenService.findOneAndUpdate(condition,obj,{
@@ -51,7 +52,7 @@ let client_token = async function(){
          let tokenDoc = await tokenService.create(obj);
          console.log(tokenDoc);
           return tokenDoc.access_token;
-       }
+       
     } catch (error) {
       console.error(error);
     } 
