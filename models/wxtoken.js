@@ -12,7 +12,7 @@ let WXTokenSchema = new Schema({
     },
     expires_in:{
         type:Date,
-        default: now
+        default: Date.now
     }
 });
 WXTokenSchema.methods = {

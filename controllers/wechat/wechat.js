@@ -28,7 +28,7 @@ exports.auth = function(req, res) {
     }
 };
 
-exports.client_token = async function(){
+let client_token = async function(){
     let condition={};
     condition.grant_type='client_credential';
     try {
@@ -37,6 +37,7 @@ exports.client_token = async function(){
          return token.access_token;
        }else{
          let result = await tokenService.requestToken();
+         console.log(result);
          let expires_in = new Date();
          expires_in.setSeconds(now.getSeconds() + result.expires_in);
          let obj ={};
@@ -56,7 +57,7 @@ exports.client_token = async function(){
     } 
 };
 
-exports.token = async function(req, res) {
- let token = await this.client_token();
+exports.token = function(req, res) {
+ let token = client_token();
  res.json(token);
 };
