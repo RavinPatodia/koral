@@ -19,10 +19,10 @@ exports.list = async function(req, res) {
                 created: -1
             }
         });
-        
+
         res.render('server/demo/list.hbs', {
             title: 'demo',
-            tags: results,
+            demos: results,
             pageInfo: pageInfo,
             Menu: 'demo'
         });
