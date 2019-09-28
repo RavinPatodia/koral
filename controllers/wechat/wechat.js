@@ -1,6 +1,7 @@
 'use strict';
 
 let mongoose = require('mongoose')
+const crypto = require('crypto');
 let WXToken = mongoose.model('WXToken')
 let _ = require('lodash')
 let core = require('../../libs/core')
