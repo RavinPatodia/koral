@@ -271,6 +271,9 @@ app.use(function(req, res, next) {
 */
 app.use(express.static(path.join(__dirname, 'public')));
 
+core.walk(appPath + '/routes/wechat', 'middlewares', function(path) {
+    require(path)(app);
+});
 core.walk(appPath + '/routes/server', 'middlewares', function(path) {
     require(path)(app);
 });
