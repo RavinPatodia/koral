@@ -6,10 +6,15 @@ let path = require('path');
 let config = require('./config');
 let core = require('./libs/core');
 let mongoose = require('mongoose');
+let compression = require('compression');
+let moment = require('moment');
+let _ = require('lodash');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let app = express();
 
+app.use(compression());
+moment.locale('zh-cn');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongodb.uri, {
     useMongoClient: true
@@ -18,6 +23,10 @@ mongoose.connect(config.mongodb.uri, {
     console.log('mongodb connection successful')
 }, function(err) {
     console.log('mongodb connection fail', err)
+});
+
+core.walk(appPath + '/models', null, function(path) {
+    require(path);
 });
 
 /**
@@ -226,19 +235,33 @@ var hbs = handlebars.create({
 
 
     }
-})
+});
+app.engine('html', hbs.engine);
+app.engine('hbs', hbs.engine);
+app.set('views', path.join(__dirname, 'views'));
+
+if (config.env === 'production') {
+    app.enable('view cache');
+}
+
+
 app.locals = {
     title: config.title || 'koral',
     keywords:'node.js,koral',
     description:'koral web service system',
     core: core,
+    moment: moment,
+    _: _,
     config: config,
     adminDir: config.admin.dir ? ('/' + config.admin.dir) : '',
     env: config.env
 };
-app.engine('html', hbs.engine);
-app.engine('hbs', hbs.engine);
-app.set('views', path.join(__dirname, 'views'));
+
+app.set('config', config);
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(cookieParser());
+
 /** 
 app.use(function(req, res, next) {
     let err = new Error('页面不存在');
@@ -246,17 +269,11 @@ app.use(function(req, res, next) {
     next(err);
 });
 */
+app.use(express.static(path.join(__dirname, 'public')));
 
-core.walk(appPath + '/models', null, function(path) {
-    require(path);
-});
 core.walk(appPath + '/routes/server', 'middlewares', function(path) {
     require(path)(app);
 });
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('port', process.env.PORT || config.port || 8080);
 let server = app.listen(app.get('port'), function() {
