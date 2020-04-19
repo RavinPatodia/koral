@@ -16,9 +16,8 @@ let app = express();
 app.use(compression());
 moment.locale('zh-cn');
 mongoose.Promise = global.Promise;
-mongoose.connect(config.mongodb.uri, {
-    useMongoClient: true
-}).then(function(db) {
+mongoose.connect(config.mongodb.uri
+).then(function(db) {
     console.log(config.mongodb.uri)
     console.log('mongodb connection successful')
 }, function(err) {
@@ -270,11 +269,17 @@ app.use(function(req, res, next) {
 });
 */
 app.use(express.static(path.join(__dirname, 'public')));
+/**
 
-core.walk(appPath + '/routes/wechat', 'middlewares', function(path) {
+ core.walk(appPath + '/routes/wechat', 'middlewares', function(path) {
     require(path)(app);
 });
+ */
+
 core.walk(appPath + '/routes/server', 'middlewares', function(path) {
+    require(path)(app);
+});
+core.walk(appPath + '/routes/', 'middlewares', function(path) {
     require(path)(app);
 });
 
